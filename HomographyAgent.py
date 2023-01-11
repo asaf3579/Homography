@@ -119,14 +119,14 @@ class HomographyAgent():
         h = cv2.getPerspectiveTransform(src_green_points, dst_points)
         src_green_warped = cv2.warpPerspective(white_img, h, (dst_image.shape[1], dst_image.shape[0]))
 
-        img3 = cv2.add(src_green_warped, dst_image)
-        show_images_debug(self.flag,img3)
+        help_pic = cv2.add(src_green_warped, dst_image)
+        show_images_debug(self.flag,help_pic)
 
-        # cv2.imshow("img3", img3)
         cv2.waitKey(0)
-        cv2.imwrite("img3.png", img3)
+        cv2.imwrite("help_pic.png", help_pic)
 
-        dst = cv2.imread('img3.png')
+        dst = cv2.imread('help_pic.png')
+
         dst = cv2.resize(dst, (512, 512))
         hsv = cv2.cvtColor(dst, cv2.COLOR_BGR2HSV)
 
@@ -150,8 +150,8 @@ class HomographyAgent():
         src_warped = cv2.resize(src_warped, (512, 512))
 
         # Put src_warped over dst
-        result4 = cv2.add(dst_masked, src_warped)
-        cv2.imshow('result4', result4)
+        result = cv2.add(dst_masked, src_warped)
+        cv2.imshow('result', result)
         cv2.waitKey(0)
 
 
